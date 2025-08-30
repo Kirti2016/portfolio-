@@ -1,19 +1,51 @@
-// Example usage inside your ProjectPage.tsx (or wherever you render the project)
-import ImageCarousel from "@/components/ImageCarousel";
+// components/ImageCarousel.tsx
+"use client";
 
-export default function ProjectPage() {
+import React, { useEffect, useState } from "react";
+import useEmblaCarousel from "embla-carousel-react";
+
+interface Image {
+  src: string;
+  alt: string;
+}
+
+interface ImageCarouselProps {
+  images: Image[];
+}
+
+export default function ImageCarousel({ images }: ImageCarouselProps) {
+  const [emblaRef, embla] = useEmblaCarousel({ loop: true });
+  const [selectedIndex, setSelectedIndex] = useState(0);
+
+  useEffect(() => {
+    if (!embla) return;
+    const onSelect = () => setSelectedIndex(embla.selectedScrollSnap());
+    embla.on("select", onSelect);
+    onSelect();
+    return () => embla.off("select", onSelect);
+  }, [embla]);
+
   return (
-    <div className="px-4 py-8">
-      <h2 className="text-3xl font-bold mb-6">Project Gallery</h2>
-      <ImageCarousel
-        images={[
-          { src: "/projects/drone-prototype.jpg", alt: "Swarm drone prototype" },
-          { src: "/projects/drone-frame.jpg", alt: "3D printed drone frame" },
-          { src: "/projects/drone-esp32.jpg", alt: "ESP32 wiring and components" },
-          { src: "/projects/drone-app.jpg", alt: "Android app controlling drones" },
-          { src: "/projects/drone-cad.jpg", alt: "CAD design of drone frame" },
-        ]}
-      />
+    <div className="embla" ref={emblaRef}>
+      <div className="embla__container flex overflow-hidden">
+        {images.map(({ src, alt }, index) => (
+          <div key={index} className="embla__slide min-w-full flex-shrink-0">
+            <img src={src} alt={alt} className="w-full h-auto object-cover rounded-lg" />
+          </div>
+        ))}
+      </div>
+      <div className="embla__dots flex justify-center space-x-2 mt-4">
+        {images.map((_, index) => (
+          <button
+            key={index}
+            className={`w-3 h-3 rounded-full ${
+              index === selectedIndex ? "bg-blue-600" : "bg-gray-400"
+            }`}
+            onClick={() => embla && embla.scrollTo(index)}
+            aria-label={`Go to slide ${index + 1}`}
+          />
+        ))}
+      </div>
     </div>
   );
 }

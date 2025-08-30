@@ -4,7 +4,7 @@ import type { Project } from "@/components/project-card";
 export const projects: Project[] = [
   {
     id: "p1",
-    title: "Miniature Swarm Drone System",
+    title: "Miniature Swarm Drone",
     description: "A modular drone project exploring swarm intelligence and coordinated flight.",
     imageAlt: "Miniature swarm drone system using ESP32 with coordinated flight",
     imageQuery: "miniature swarm drones esp32 wifi networking coordinated flight 3d printed frames robotics",
