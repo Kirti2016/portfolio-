@@ -1,11 +1,16 @@
-import Link from "next/link"
-import { Github, Linkedin, Mail } from "lucide-react"
+import Link from "next/link";
+import { Github, Linkedin, Mail } from "lucide-react";
 
 export function SiteFooter() {
   return (
     <footer className="border-t">
-      <div className="mx-auto max-w-5xl px-4 py-8 flex flex-col md:flex-row items-center justify-between gap-4">
-        <p className="text-sm text-muted-foreground">© {new Date().getFullYear()} Kirti Yadav. All rights reserved.</p>
+      <div className="mx-auto max-w-5xl px-4 py-6 flex flex-col md:flex-row items-center justify-centre gap-6">
+        {/* Made by ❤️ Kirti text */}
+        <p className="text-sm text-muted-foreground">
+          Made by <span className="text-red-400 text-lg">❤️</span> Kirti
+        </p>
+
+        {/* Social Links */}
         <div className="flex items-center gap-4">
           <Link
             aria-label="GitHub"
@@ -35,5 +40,5 @@ export function SiteFooter() {
         </div>
       </div>
     </footer>
-  )
+  );
 }

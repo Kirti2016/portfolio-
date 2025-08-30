@@ -1,9 +1,8 @@
-"use client"
+"use client";
 
 export function HeroTech() {
   return (
     <section id="home" className="relative overflow-hidden">
-      {/* Ambient gradient lights */}
       <div className="pointer-events-none absolute inset-0 ambient-spot" aria-hidden="true" />
       <div className="relative mx-auto max-w-6xl px-6 py-20 md:py-28">
         <div className="grid items-center gap-10 md:grid-cols-2">
@@ -43,19 +42,14 @@ export function HeroTech() {
                   alt="Portrait photo"
                   className="h-[360px] w-full object-cover object-top"
                 />
-                {/* Glow ring */}
                 <div className="pointer-events-none absolute inset-0 rounded-xl ring-1 ring-cyan-400/40" />
               </div>
-            </div>
-            {/* Floating accent pill */}
-            <div className="animate-float glass-panel absolute -left-6 -top-6 rounded-full px-3 py-1 text-xs text-white/80">
-              Available for work
             </div>
           </div>
         </div>
       </div>
     </section>
-  )
+  );
 }
 
-export default HeroTech
+export default HeroTech;

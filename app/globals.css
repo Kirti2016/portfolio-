@@ -428,3 +428,6 @@ section[id] {
 .icon-hover-pop:hover {
   animation: icon-pop 350ms ease-out;
 }
+html, body {
+  overflow-x: hidden; /* Prevent horizontal scroll */
+}
